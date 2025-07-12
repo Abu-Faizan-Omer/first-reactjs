@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import viteLogo from '/vite.svg'
 import './App.css'
-import ExpenseItem from "./components/Expenses/ExpenseItem";
+import Expenses from "./components/Expenses/Expenses";
 
 
 function App() {
@@ -14,20 +14,10 @@ function App() {
 
   return (
     <div>
-      <h1>Let's get Started</h1>
 
-      {expenses.map((expense, index) => {
-        return (
-          <ExpenseItem
-            key={expense.id}
-            location={expense.location}
-            date={expense.date}
-            title={expense.title}
-            price={expense.price}
-          ></ExpenseItem>
-        );
-      })}
-      
+      <h1>Let's get Started</h1>
+     <Expenses expenses={expenses}></Expenses>
+
     </div>
   );
 }
