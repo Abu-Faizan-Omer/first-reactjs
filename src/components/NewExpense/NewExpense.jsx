@@ -3,9 +3,10 @@ import ExpenseForm from "./ExpenseForm";
 import FormikForm from "./FormikForm";
 import "./NewExpense.css";
 
-const NewExpense = () => {
+const NewExpense = (props) => {
     const saveExpenseDataHandler = (enterdExpenseData) => {
-        console.log(enterdExpenseData) 
+    const expenseData={...enterdExpenseData,id:Math.random().toString()}//for Id create
+    props.onGetFormData(expenseData)
   }
   return (
     <div className="new-expense">

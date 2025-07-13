@@ -2,7 +2,7 @@ import { useState } from 'react'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Expenses from "./components/Expenses/Expenses";
-import NewExpenses from "./components/NewExpense/NewExpense";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 function App() {
   const expenses = [
@@ -12,10 +12,13 @@ function App() {
     { id: "4", location : "Mumbai", date: new Date(2023, 1, 14), title: "Laptop", price: 200 },
   ];
 
+  const formDataHandler = (enteredFormData) => {
+    console.log(enteredFormData)
+  }
+
   return (
     <div>
-
-      <NewExpenses/>
+      <NewExpense onGetFormData={formDataHandler} />
      <Expenses expenses={expenses}/>
 
     </div>
