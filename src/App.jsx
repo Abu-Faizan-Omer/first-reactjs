@@ -4,25 +4,25 @@ import './App.css'
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
-function App() {
-  const expenses = [
-    { id: "1", location : "Bangalore", date: new Date(2023, 7, 15), title: "Insurance", price: 100 },
-    { id: "2", location : "Delhi",date: new Date(2023, 3, 25), title: "Book", price: 10 },
-    { id: "3", location : "Hyderabad", date: new Date(2023, 10, 11), title: "Pen", price: 1 },
-    { id: "4", location : "Mumbai", date: new Date(2023, 1, 14), title: "Laptop", price: 200 },
-  ];
+const App = () => {
+  const [expenses, setExpenses] = useState([
+    { id: 1, title: "Insurance", date: new Date(2023, 7, 15), price: 100 },
+    { id: 2, title: "Book", date: new Date(2023, 8, 25), price: 10 },
+    { id: 3, title: "Pen", date: new Date(2023, 2, 10), price: 1 },
+    { id: 4, title: "Laptop", date: new Date(2023, 9, 17), price: 200 },
+  ]);
 
-  const formDataHandler = (enteredFormData) => {
-    console.log(enteredFormData)
-  }
+const addExpenseHandler = (expense) => {
+  setExpenses((prevExpenses) => [expense, ...prevExpenses]);
+};
+
 
   return (
     <div>
-      <NewExpense onGetFormData={formDataHandler} />
-     <Expenses expenses={expenses}/>
-
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses expenses={expenses} />
     </div>
   );
-}
+};
 
 export default App
