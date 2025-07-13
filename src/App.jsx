@@ -1,22 +1,28 @@
-import React from "react";
-import useFetch from "./hooks/useFetch";
+import React, { Fragment } from "react";
 
-const App = () => {
-  const { data, loading, error } = useFetch("https://jsonplaceholder.typicode.com/posts?_limit=10");
+const dummyUsers = [
+  { id: 1, name: "Alice", occupation: "Software Engineer", salary: "$80,000", age: 25 },
+  { id: 2, name: "Bob", occupation: "Data Analyst", salary: "$70,000", age: 28 },
+  { id: 3, name: "Charlie", occupation: "Product Manager", salary: "$90,000", age: 30 },
+  { id: 4, name: "David", occupation: "UX Designer", salary: "$75,000", age: 27 },
+];
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
+export default function App() {
   return (
-    <div>
-      <h1>Fetched Data</h1>
-      <ul>
-        {data && data.map((item) => (
-          <li key={item.id}>{item.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+    // Remove the Wrapper div and use Fragment
+    <>
+      <h1 style={{ textAlign: "center" }}>React Fragment Behind the Scenes</h1>
 
-export default App;
+      {dummyUsers.map((user) => (
+        <Fragment key={user.id}>
+          <p>Name: {user.name}</p>
+          <p>Occupation: {user.occupation}</p>
+          <p>Salary: {user.salary}</p>
+          <p>Age: {user.age}</p>
+          <hr />
+        </Fragment>
+      ))}
+      
+    </>
+  );
+}
