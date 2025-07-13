@@ -1,30 +1,18 @@
-import { useState } from 'react'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Expenses from "./components/Expenses/Expenses";
-import NewExpense from "./components/NewExpense/NewExpense";
-const DUMMY_EXPENSES = [
-  { id: 1, title: "Insurance", date: new Date(2023, 7, 15), price: 100 },
-  { id: 2, title: "Book", date: new Date(2024, 8, 25), price: 10 },
-  { id: 3, title: "Pen", date: new Date(2025, 2, 10), price: 1 },
-  { id: 4, title: "Laptop", date: new Date(2024, 9, 17), price: 200 },
-];
+// App.js
+import React from 'react';
+import UserList from './UserList';
+import withLoader from './withLoader';
 
 const App = () => {
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
-
-
-const addExpenseHandler = (expense) => {
-  setExpenses((prevExpenses) => [expense, ...prevExpenses]);
-};
-
+  const list = ['Alice', 'Bob', 'Charlie'];
+  const EnhancedUserList = withLoader(UserList, list);
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses expenses={expenses} />
+      <h1>Our Team Members</h1>
+      <EnhancedUserList />
     </div>
   );
 };
 
-export default App
+export default App;
