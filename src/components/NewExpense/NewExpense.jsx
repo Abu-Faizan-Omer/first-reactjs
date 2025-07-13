@@ -4,9 +4,13 @@ import FormikForm from "./FormikForm";
 import "./NewExpense.css";
 
 const NewExpense = () => {
+    const saveExpenseDataHandler = (enterdExpenseData) => {
+        console.log(enterdExpenseData) 
+  }
   return (
     <div className="new-expense">
-      <FormikForm />
+      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+     {/*  <FormikForm/> */} 
     </div>
   );
 };
