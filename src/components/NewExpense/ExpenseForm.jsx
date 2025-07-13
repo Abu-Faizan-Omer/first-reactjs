@@ -2,19 +2,37 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("")
-  const [enterdDate,setenteredDate]=useState("")
 
+  const [userInput, setUserInput] = useState({
+    enteredTitle: "",
+    enteredAmount: "",
+    enteredDate:""
+  })
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
-  };
+    setUserInput((prevValue) => {
+      return {
+        ...prevValue,
+        enteredTitle:event.target.value
+        }
+    })
+  }
   const amountChangeHandler = (event) => {
-    setEnteredAmount(event.target.value)
+    setUserInput((prevValue) => {
+      return {
+        ...prevValue,
+        enteredAmount: event.target.value
+      }
+    })
   }
   const dateChangeHandler = (event) => {
-    setenteredDate(event.target.value)
+    setUserInput((prevValue) => {
+      return {
+        ...prevValue,
+        enteredDate: event.target.value
+      }
+    })
   }
+ 
 
   return (
     <form>
@@ -24,7 +42,7 @@ const ExpenseForm = () => {
           <label htmlFor="title">Title</label>
           <input type="text" id="title" onChange={titleChangeHandler} />
         </div>
-
+        
         <div className="new-expense__control">
           <label htmlFor="amount">Amount</label>
           <input type="number" id="amount" onChange={amountChangeHandler} />
@@ -32,11 +50,16 @@ const ExpenseForm = () => {
 
         <div className="new-expense__control">
           <label htmlFor="date">Date</label>
-          <input type="date" id="date" min="2023-01-01" max="2024-12-31" onChange={dateChangeHandler} />
+          <input
+            type="date"
+            id="date"
+            min="2023-01-01"
+            max="2024-12-31"
+            onChange={dateChangeHandler}
+          />
         </div>
 
       </div>
-      
       <div className="new-expense__actions">
         <button type="submit">Add Expense</button>
       </div>
