@@ -1,17 +1,33 @@
-import React from "react";
+// Write your code at relevant places in the code below:
+
+import React,{useState} from "react";
 import ExpenseForm from "./ExpenseForm";
-import FormikForm from "./FormikForm";
 import "./NewExpense.css";
 
 const NewExpense = (props) => {
-    const saveExpenseDataHandler = (enterdExpenseData) => {
-    const expenseData={...enterdExpenseData,id:Math.random().toString()}//for Id create
-    props.onAddExpense(expenseData)
-  }
+
+const [isEditing,setIsEditing]=useState(false)
+
+  const saveExpenseDataHandler = (enteredExpenseData) => {
+    const expenseData = { ...enteredExpenseData, id: Math.random().toString() };
+    props.onAddExpense(expenseData);
+    setIsEditing(false)
+  };
+
   return (
     <div className="new-expense">
-      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
-     {/*  <FormikForm/> */} 
+      {isEditing === false && (
+        <button type="button" onClick={() => {
+          setIsEditing(true)
+        }}
+        >
+        Add Expense
+      </button>)}
+
+      {isEditing === true && (<ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onCancel={() => {
+        setIsEditing(false)
+      }}
+      />)}
     </div>
   );
 };
